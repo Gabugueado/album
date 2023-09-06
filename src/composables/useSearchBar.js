@@ -63,7 +63,7 @@ const useSearchBar = () => {
 
             store.dispatch('insertarVideo', {
                 id: idVideo,
-                titulo: title,
+                titulo: title.slice(0, 100),
                 descripcion: description,
                 duracion: duracion(data.items[0].contentDetails.duration),
                 url: url.value,
