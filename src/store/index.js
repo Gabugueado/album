@@ -54,8 +54,7 @@ export default createStore({
 			await nodeApi.post('/insertData', { ...video })
 				.then(() => {
 					commit('insertarVideo', video)
-				}).catch((error) => {
-					console.log(error)
+				}).catch(() => {
 					state.Toast.fire({
 						icon: 'error',
 						title: 'el video ya existe'
