@@ -53,7 +53,6 @@ export default createStore({
 		async insertarVideo({ commit, state }, video) {
 			await nodeApi.post('/insertData', { ...video })
 				.then(response => {
-					console.info(response)
 					commit('insertarVideo', video)
 				}).catch(() => {
 					state.Toast.fire({
