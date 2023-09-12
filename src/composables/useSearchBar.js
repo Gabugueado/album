@@ -29,6 +29,9 @@ const useSearchBar = () => {
     function duracion(duration) {
         const match = duration.match(/PT(\d+H)?(\d+M)?(\d+S)?/);
     
+        if (!match){
+            return null
+        }
         const horas = parseInt(match[1]) || 0;
         const minutos = parseInt(match[2]) || 0;
         const segundos = parseInt(match[3]) || 0;
@@ -59,18 +62,25 @@ const useSearchBar = () => {
                     title: 'enlace incorrecto '
                 })
             }
+            const tiempo = duracion(data.items[0].contentDetails.duration)
             const { title, description, thumbnails } = data.items[0].snippet
 
-            store.dispatch('insertarVideo', {
+            if (!tiempo) {
+                return store.state.Toast.fire({
+                    icon: 'error',
+                    title: 'tipo de video incorrecto'
+                })
+            }
+
+            store.dispatch('insertarVideoFB', {
                 id: idVideo,
                 titulo: title.slice(0, 100),
                 descripcion: description,
-                duracion: duracion(data.items[0].contentDetails.duration),
+                duracion: tiempo ,
                 url: url.value,
                 img: thumbnails.standard.url,
             })
             url.value = ''
-
         },
         titulo,
         descripcion,

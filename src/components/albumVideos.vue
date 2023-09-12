@@ -3,7 +3,8 @@ import { computed, ref } from 'vue';
 import store from '@/store'
 import myVideo from './myVideo.vue';
 
-store.dispatch('cargarVideos')
+// store.dispatch('cargarVideos')
+store.dispatch('obtenerVideos')
 
 const videos = computed( () => store.state['videos']) 
 const verVideo = ref(false)
@@ -58,7 +59,7 @@ const closeModal = () => {
                         <button class="btn-cancelar" @click="closeModal">
                             <span>Cancelar</span>
                         </button>
-                        <button class="btn-eliminar" @click="closeModal(); $store.dispatch('eliminarVideo', video)">
+                        <button class="btn-eliminar" @click="closeModal(); $store.dispatch('eliminarVideoFB', video)">
                             <span>Eliminar</span>
                         </button>
                     </footer>

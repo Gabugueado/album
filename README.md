@@ -24,11 +24,12 @@ npm run lint
 Vea [referencias de configuración](https://cli.vuejs.org/config/).
 
 
-# Configuración Para El Uso
+## Configuración para el uso
+
 
 para usar la aplicacion he creado un backend en node.js, acá me estoy conectando a una base de datos que he creado localmente, utilizando mysql
 
-#### clonar repositorio
+#### Clonar Repositorio
 
 Para usar la aplicación, primero debes clonar el repositorio desde GitHub:
 
@@ -36,7 +37,7 @@ Para usar la aplicación, primero debes clonar el repositorio desde GitHub:
 git clone https://github.com/Gabugueado/backend-album-video.git
 ```
 
-### configurar Base de datos
+### Configurar Base de datos
 
 Una vez clonado, sigue estos pasos para configurar la aplicación:
 
