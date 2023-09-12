@@ -59,7 +59,7 @@ const closeModal = () => {
                         <button class="btn-cancelar" @click="closeModal">
                             <span>Cancelar</span>
                         </button>
-                        <button class="btn-eliminar" @click="closeModal(); $store.dispatch('eliminarVideo', video)">
+                        <button class="btn-eliminar" @click="closeModal(); $store.dispatch('eliminarVideoFB', video)">
                             <span>Eliminar</span>
                         </button>
                     </footer>
