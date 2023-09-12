@@ -6,7 +6,6 @@ import Swal from 'sweetalert2';
 export default createStore({
 	state: {
 		videos: [],
-		errorMsg: {},
 		Toast: Swal.mixin({
 			toast: true,
 			position: 'top-end',
@@ -38,6 +37,7 @@ export default createStore({
 		},
 	},
 	actions: {
+		// usando mysql
 		// async MyAction  (/*{ commit }*/) => {
 		// }
 		async cargarVideos({ commit }) {
@@ -72,6 +72,45 @@ export default createStore({
 			state.Toast.fire({
 				icon: 'success',
 				title: 'video eliminado'
+			})
+			commit('eliminarVideo', video.id)
+		},
+		// usando firebase
+		// async MyAction  (/*{ commit }*/) => {
+		// }
+		async obtenerVideos({ commit })  {
+			const { data } = await nodeApi.get('/obtenerVideos')	
+			commit('cargarVideos', data.reverse())
+		},
+		async insertarVideoFB({ commit, state }, video) {
+			await nodeApi.post('/insertarVideo', { ...video })
+			.then((response) => {
+				commit('insertarVideo', video)
+				state.Toast.fire({
+					icon: 'success',
+					title: response.data.message
+				})
+			}).catch((error) => {
+				state.Toast.fire({
+					icon: 'error',
+					title: error.response.data.error
+				})
+			})
+		},
+		async eliminarVideoFB({ commit, state }, video) {
+			
+			await nodeApi.delete('/eliminarVideoFB/' + video.id)
+			.then((response)=>{
+				state.Toast.fire({
+					icon: 'success',
+					title: response.data
+				})
+			})
+			.catch((error)=>{
+				state.Toast.fire({
+					icon: 'success',
+					title: error.response.data
+				})
 			})
 			commit('eliminarVideo', video.id)
 		},
