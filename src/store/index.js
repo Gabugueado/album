@@ -98,7 +98,6 @@ export default createStore({
 			})
 		},
 		async eliminarVideoFB({ commit, state }, video) {
-			
 			await nodeApi.delete('/eliminarVideoFB/' + video.id)
 			.then((response)=>{
 				state.Toast.fire({
